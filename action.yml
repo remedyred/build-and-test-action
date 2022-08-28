@@ -18,6 +18,18 @@ runs:
         node-version: 'lts/*'
         cache: 'pnpm'
 
-    - name: Build, test, and lint
-      run: action.sh
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
+
+    - name: Build
+      run: pnpm run --if-present build
+      shell: bash
+
+    - name: Test
+      run: pnpm run --if-present test
+      shell: bash
+
+    - name: Fix Styles
+      run: pnpm run --if-present lint
       shell: bash
