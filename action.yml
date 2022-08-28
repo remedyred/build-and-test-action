@@ -1,0 +1,31 @@
+name: 'Build, test, and lint'
+description: 'pnpm run build, test, and lint scripts'
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
+
+    - uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 'lts/*'
+        cache: 'pnpm'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    - name: Build
+      run: pnpm run --if-present build
+
+    - name: Test
+      run: pnpm run --if-present test
+
+    - name: Fix Styles
+      run: pnpm run --if-present lint
