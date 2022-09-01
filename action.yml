@@ -1,7 +1,7 @@
-name: 'Build, test, and lint'
-description: 'pnpm run build, test, and lint scripts'
+name: "Build, test, and lint"
+description: "pnpm run build, test, and lint scripts"
 runs:
-  using: "composite"
+  using: composite
   steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -15,11 +15,11 @@ runs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 'lts/*'
-        cache: 'pnpm'
+        node-version: "lts/*"
+        cache: pnpm
 
-    - name: Install dependencies
-      run: pnpm install --frozen-lockfile
+    - name: Run build checks
+      run: ${{ github.action_path }}/check.sh
       shell: bash
 
     - name: Build
