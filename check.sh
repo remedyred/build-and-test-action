@@ -9,10 +9,8 @@ has_script() {
   [[ $SCRIPT_COUNT -gt 0 ]]
 }
 
-
 echo "Install dependencies"
 pnpm install --frozen-lockfile
-
 
 if has_script "build"; then
   echo "Running build"
