@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AVAILABLE_SCRIPTS=$(pnpm run)
+AVAILABLE_SCRIPTS=$(npm run)
 
 has_script() {
   local script_name="$1"
