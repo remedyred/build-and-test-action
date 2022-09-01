@@ -37,7 +37,7 @@ if has_script "docs"; then
   echo "Checking docs"
   git reset --hard > /dev/null 2>&1
   pnpm run docs
-  git diff --quiet || {
+  git diff --ignore-space-at-eol --quiet || {
     echo 'Working tree is dirty. Did you forget to update the docs?'
     exit 1
   }
